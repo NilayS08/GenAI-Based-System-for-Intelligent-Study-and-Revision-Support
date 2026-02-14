@@ -1,0 +1,57 @@
+[project]
+name = "smart-revision-generator"
+version = "1.0.0"
+description = "GenAI-Based Intelligent Study and Revision Support System"
+readme = "setup.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Team", email = "team@example.com"}
+]
+keywords = ["genai", "rag", "education", "revision", "fastapi"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.mypy_cache
+    | \.venv
+    | venv
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = [".git", ".venv", "venv", "__pycache__"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["venv", ".venv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["*/tests/*", "*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
