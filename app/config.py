@@ -28,8 +28,8 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
-    # --- OpenAI ---
-    openai_api_key: str
+    # --- Google Gemini ---
+    gemini_api_key: str
 
     # --- Supabase ---
     supabase_url: str
@@ -38,9 +38,10 @@ class Settings(BaseSettings):
     # --- Vector Store ---
     faiss_index_path: str = "app/vector_store/faiss_index"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
+    embedding_dimension: int = 384  # all-MiniLM-L6-v2 output dimension
 
     # --- LLM ---
-    llm_model: str = "gpt-4o-mini"
+    llm_model: str = "gemini-1.5-flash"
     llm_temperature: float = 0.3
     llm_max_tokens: int = 4000
 

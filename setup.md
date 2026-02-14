@@ -18,7 +18,7 @@ Before setting up the project, ensure you have the following installed:
 
 ### External Services Required
 
-1. **OpenAI API Key** - [Get API Key](https://platform.openai.com/api-keys)
+1. **Google Gemini API Key** - [Get API Key](https://aistudio.google.com/app/apikey)
 2. **Supabase Account** - [Create Account](https://supabase.com/)
 
 ---
@@ -125,7 +125,7 @@ nano .env  # or use any text editor
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `OPENAI_API_KEY` | Your OpenAI API key | `sk-...` |
+| `GEMINI_API_KEY` | Your Google Gemini API key | `AIza...` |
 | `SUPABASE_URL` | Your Supabase project URL | `https://xxx.supabase.co` |
 | `SUPABASE_KEY` | Your Supabase anon/public key | `eyJ...` |
 
@@ -237,7 +237,7 @@ The frontend will be available at: http://localhost:8501
 | Vector Store | FAISS (HNSW) | Embedding storage & retrieval |
 | Embeddings | sentence-transformers/all-MiniLM-L6-v2 | Text vectorization |
 | Sparse Retrieval | rank-bm25 | Keyword-based retrieval |
-| LLM | OpenAI GPT-4o-mini | Content generation |
+| LLM | Google Gemini 1.5 Flash | Content generation |
 | Frontend | Streamlit | User interface |
 | Evaluation | sklearn, rouge-score | Quality metrics |
 
@@ -251,7 +251,7 @@ supabase==2.4.0           # Database client
 faiss-cpu==1.7.4          # Vector search
 sentence-transformers==2.3.1  # Embeddings
 rank-bm25==0.2.2          # BM25 retrieval
-openai==1.12.0            # LLM API
+google-generativeai==0.4.1  # LLM API (Gemini)
 PyPDF2==3.0.1             # PDF processing
 python-docx==1.1.0        # DOCX processing
 streamlit==1.31.1         # Frontend
@@ -327,7 +327,7 @@ pytest tests/test_chunking.py -v
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                   LLM GENERATION                                 │
-│              (GPT-4o-mini + RAG Context)                         │
+│             (Gemini 1.5 Flash + RAG Context)                     │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -383,8 +383,8 @@ pip install torch --index-url https://download.pytorch.org/whl/cpu
 - Check if the project is active in Supabase dashboard
 - Ensure tables are created correctly
 
-**4. OpenAI API Rate Limits**
-- The system uses GPT-4o-mini which has generous rate limits
+**4. Gemini API Rate Limits**
+- The system uses Gemini 1.5 Flash which has generous rate limits
 - Implement exponential backoff (already included in `tenacity`)
 
 **5. Memory Issues with Large PDFs**
