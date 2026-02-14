@@ -109,6 +109,14 @@ async def health_check():
 # app.include_router(documents.router, prefix="/api/v1/documents", tags=["Documents"])
 # app.include_router(generations.router, prefix="/api/v1/generations", tags=["Generations"])
 # app.include_router(feedback.router, prefix="/api/v1/feedback", tags=["Feedback"])
+# Include Routers
+from app.routers.upload import router as upload_router
+
+app.include_router(
+    upload_router,
+    prefix="/api/v1/documents",
+    tags=["Documents"]
+)
 
 
 if __name__ == "__main__":
